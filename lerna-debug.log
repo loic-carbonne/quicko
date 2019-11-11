@@ -1,0 +1,11 @@
+0 silly argv { _: [ 'add' ],
+0 silly argv   globs: [],
+0 silly argv   lernaVersion: '3.18.3',
+0 silly argv   '$0': 'lerna',
+0 silly argv   pkg: 'tbd-core' }
+1 notice cli v3.18.3
+2 verbose rootPath /Users/loiccarbonne/workspace/perso/tbd
+3 error JSONError: Unexpected token } in JSON at position 5320 while parsing near '...uid": "^3.3.3"  },}' in ../electron-app/package.json
+3 error     at module.exports (/Users/loiccarbonne/.nvm/versions/node/v8.9.3/lib/node_modules/lerna/node_modules/parse-json/index.js:26:19)
+3 error     at parse (/Users/loiccarbonne/.nvm/versions/node/v8.9.3/lib/node_modules/lerna/node_modules/load-json-file/index.js:15:9)
+3 error     at pify.then.data (/Users/loiccarbonne/.nvm/versions/node/v8.9.3/lib/node_modules/lerna/node_modules/load-json-file/index.js:18:94)
