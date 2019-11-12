@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 
-import { TaskModel, FieldModel, FIELD_TYPES } from '@models/Task';
+import { TaskModel, FieldModel, FIELD_TYPES } from 'tbd-core/models/Task';
 
 import CodeField from './CodeField';
 import TextField from './TextField';

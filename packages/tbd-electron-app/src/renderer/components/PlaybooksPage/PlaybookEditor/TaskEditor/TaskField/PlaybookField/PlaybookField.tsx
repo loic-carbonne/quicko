@@ -3,7 +3,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { RootState } from '../../../../../../shared/reducers';
 import { connect } from 'react-redux';
-import { PlaybookModel } from '@models/Playbook';
+import { PlaybookModel } from 'tbd-core/models/Playbook';
 
 type PlaybookFieldProps = {
   playbooks: PlaybookModel[];

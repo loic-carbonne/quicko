@@ -8,10 +8,10 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import { bumpStyled } from '../../../shared/utils';
-import { TASK_TYPES } from '@models/Task';
+import { TASK_TYPES } from 'tbd-core/models/Task';
 import { addTask, deleteTask } from '../../../shared/actions/tasksActions';
 import { updatePlaybook, deletePlaybook } from '../../../shared/actions/playbooksActions';
-import { PlaybookModel } from '@models/Playbook';
+import { PlaybookModel } from 'tbd-core/models/Playbook';
 import { RootState } from '../../../shared/reducers';
 
 import TaskEditor from './TaskEditor';

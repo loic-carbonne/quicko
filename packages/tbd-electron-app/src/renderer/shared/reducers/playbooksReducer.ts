@@ -1,6 +1,6 @@
 import { ADD_PLAYBOOK, DELETE_PLAYBOOK, UPDATE_PLAYBOOK, PlaybooksAction } from './../actions/playbooksActions';
 import { ADD_TASK, DELETE_TASK, TasksAction } from '../actions/tasksActions';
-import { PlaybooksState } from '@models/Playbook';
+import { PlaybooksState } from 'tbd-core/models/Playbook';
 
 const INITIAL_PLAYBOOKS: PlaybooksState = {
   '1': { id: '1', parameters: [], description: '', name: 'Create component', tasks: [] },

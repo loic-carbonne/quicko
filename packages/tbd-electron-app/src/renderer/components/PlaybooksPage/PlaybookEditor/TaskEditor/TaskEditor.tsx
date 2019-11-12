@@ -12,7 +12,7 @@ import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import { bumpStyled } from '../../../../shared/utils';
 import { updateTask } from '../../../../shared/actions/tasksActions';
 import TaskField from './TaskField';
-import { TaskModel, TASK_TYPES } from '@models/Task';
+import { TaskModel, TASK_TYPES } from 'tbd-core/models/Task';
 import { RootState } from '../../../../shared/reducers';
 
 const ViewExpansionPanelDetails = bumpStyled(ExpansionPanelDetails)`

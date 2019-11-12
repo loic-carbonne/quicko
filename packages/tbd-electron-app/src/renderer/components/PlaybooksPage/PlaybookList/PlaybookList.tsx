@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import { bumpStyled } from '../../../shared/utils';
-import { PlaybookModel } from '@models/Playbook';
+import { PlaybookModel } from 'tbd-core/models/Playbook';
 import { RootState } from '../../../shared/reducers/index';
 import { addPlaybook } from '../../../shared/actions/playbooksActions';
 

@@ -1,5 +1,5 @@
 import { ADD_TASK, UPDATE_TASK, DELETE_TASK, TasksAction } from '../actions/tasksActions';
-import { TaskModel } from '@models/Task';
+import { TaskModel } from 'tbd-core/models/Task';
 
 export interface TasksState {
   [id: string]: TaskModel;

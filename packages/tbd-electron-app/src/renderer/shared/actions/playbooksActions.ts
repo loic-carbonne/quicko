@@ -1,4 +1,4 @@
-import { PlaybookModel } from '@models/Playbook';
+import { PlaybookModel } from 'tbd-core/models/Playbook';
 import { Action, ActionCreator } from 'redux';
 import uuid from 'uuid/v4';
 

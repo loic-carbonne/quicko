@@ -6,12 +6,13 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const baseConfig = require('./webpack.base.config');
 
 module.exports = merge.smart(baseConfig, {
-    target: 'electron-main',
+    target: 'node',
     entry: {
-        main: './src/main/main.ts'
+        main: './src/index.ts'
     },
     module: {
         rules: [
+            { test: /rx\.lite\.aggregates\.js/, use: 'imports-loader?define=>false' },
             {
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
@@ -39,6 +40,7 @@ module.exports = merge.smart(baseConfig, {
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-        })
+        }),
+        new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true }),
     ]
 });

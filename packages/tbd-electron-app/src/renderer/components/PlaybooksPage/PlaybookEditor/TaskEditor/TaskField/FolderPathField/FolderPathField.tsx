@@ -5,8 +5,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Typography from '@material-ui/core/Typography';
 import { bumpStyled } from '../../../../../../shared/utils';
-import { FolderPathFieldTypes } from '../../../../../../../shared/models/Task';
-
+import { FolderPathFieldTypes } from 'tbd-core/models/Task';
 
 
 type FolderPathFieldProps = {
@@ -24,7 +23,7 @@ const FolderPathField: FunctionComponent<FolderPathFieldProps> =
     const showPathTextField = type === FolderPathFieldTypes.Value;
 
     return (<Fragment>
-      <ViewRadioGroup onChange={(event, value) => onChange({type: value})}>
+      <ViewRadioGroup onChange={(_, value) => onChange({type: value})}>
         <FormControlLabel
           control={<Radio />}
           label="Root"
