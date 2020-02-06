@@ -1,6 +1,7 @@
-import { app, BrowserWindow } from 'electron';
+import { app, ipcMain, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import commandLineArgs from 'command-line-args';
 
 let win: BrowserWindow | null;
 
@@ -41,6 +42,8 @@ const createWindow = async () => {
     });
   }
 
+  win.show();
+
   win.on('closed', () => {
     win = null;
   });
@@ -59,3 +62,16 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+const optionDefinitions = [
+  { name: 'location', alias: 'l', type: String },
+]
+
+const extractQuickoFileLocationFromParam = () => {
+  const options = commandLineArgs(optionDefinitions)
+  return options.location;
+}
+
+ipcMain.on('get-quicko-file-location-param', (event) => {
+  event.returnValue = extractQuickoFileLocationFromParam();
+})
