@@ -2,7 +2,7 @@ import Storage from 'node-storage';
 import { HydratedPlaybooksState, PlaybooksState } from './../shared/models/Playbook';
 import { TasksState } from './../shared/models/Task';
 
-const store = new Storage('persist%3Acodai.json');
+const store = new Storage('quicko.json');
 
 const rawPlaybooks: PlaybooksState = JSON.parse(store.get('playbooks'));
 const rawTasks: TasksState = JSON.parse(store.get('tasks'));
