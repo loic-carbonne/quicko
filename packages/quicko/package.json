@@ -1,6 +1,6 @@
 {
   "name": "quicko",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "",
   "main": "./bin/index.js",
   "bin": {
@@ -80,7 +80,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "quicko-cli": "^0.0.7"
+    "quicko-cli": "^0.1.0"
   },
   "gitHead": "05fb056e2b1887d738bcc9f316b63183348607e1"
 }

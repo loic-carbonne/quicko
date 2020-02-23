@@ -1,6 +1,6 @@
 {
   "name": "quicko-electron-app",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "",
   "main": "./dist/main.js",
   "scripts": {
@@ -160,7 +160,7 @@
     "node-plop": "^0.19.0",
     "node-storage": "0.0.8",
     "prismjs": "^1.17.1",
-    "quicko-core": "^0.0.7",
+    "quicko-core": "^0.1.0",
     "react": "^16.9.0",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
