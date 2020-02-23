@@ -109,5 +109,6 @@
   },
   "publishConfig": {
     "directory": "src"
-  }
+  },
+  "gitHead": "05fb056e2b1887d738bcc9f316b63183348607e1"
 }
