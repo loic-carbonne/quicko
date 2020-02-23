@@ -2,6 +2,7 @@ import { app, ipcMain, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import commandLineArgs from 'command-line-args';
+const log = require('electron-log');
 
 let win: BrowserWindow | null;
 
@@ -64,11 +65,13 @@ app.on('activate', () => {
 });
 
 const optionDefinitions = [
-  { name: 'location', alias: 'l', type: String },
+  { name: 'location', alias: 'l', type: String, defaultValue: './' },
 ]
 
 const extractQuickoFileLocationFromParam = () => {
+  log.info('args', process.argv);
   const options = commandLineArgs(optionDefinitions)
+  log.info('Hello', options);
   return options.location;
 }
 
