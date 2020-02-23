@@ -8,6 +8,7 @@
   },
   "scripts": {
     "compile": "webpack --config webpack.quicko.prod.config.js -o bin/index.js",
+    "compile-dev": "webpack --config webpack.quicko.config.js -o bin/index.js --watch",
     "start": "node bin/index.js",
     "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json"
   },
@@ -28,17 +29,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:Robinfr/electron-react-typescript.git"
+    "url": "git+ssh://git@github.com:loic-carbonne/quicko.git"
   },
   "author": {
-    "name": "Your name",
-    "email": "Your email"
+    "name": "Loïc carbonne",
+    "email": "loic.carbonne.mail@gmail.com"
   },
   "license": "SEE LICENSE",
   "bugs": {
-    "url": "https://github.com/Robinfr/electron-react-typescript/issues"
+    "url": "https://github.com/loic-carbonne/quicko/issues"
   },
-  "homepage": "https://github.com/Robinfr/electron-react-typescript",
+  "homepage": "https://github.com/loic-carbonne/quicko",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
@@ -79,8 +80,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "cli-progress": "^3.3.1",
-    "open": "^7.0.0",
-    "request": "^2.88.0"
-  }
+    "quicko-cli": "^0.0.7"
+  },
+  "gitHead": "05fb056e2b1887d738bcc9f316b63183348607e1"
 }

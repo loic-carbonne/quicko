@@ -2,7 +2,7 @@ import request from 'request';
 import fs from 'fs';
 import cliProgress from 'cli-progress';
 
-const download = (url, filename, callback) => {
+const download = (url, filename, successCallBack, errorCallback) => {
 
   const progressBar = new cliProgress.SingleBar({
     format: '{bar} {percentage}% | ETA: {eta}s'
@@ -15,7 +15,7 @@ const download = (url, filename, callback) => {
   request.get(url)
   .on('response', (response) => {
     if (response.statusCode !== 200) {
-      return callback('Response status was ' + response.statusCode);
+      return errorCallback('Response status was ' + response.statusCode);
     }
 
     const totalBytes = response.headers['content-length'];
@@ -29,18 +29,19 @@ const download = (url, filename, callback) => {
   .on('error', (err) => {
     fs.unlink(filename, ()=> {});
     progressBar.stop();
-    return callback(err.message);
+    return errorCallback(err.message);
   });
 
   file.on('finish', () => {
     progressBar.stop();
     file.close();
+    successCallBack();
   });
 
   file.on('error', (err) => {
     fs.unlink(filename, ()=> {});
     progressBar.stop();
-    return callback(err.message);
+    return errorCallback(err.message);
   });
 }
 
