@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import DropZone from './DropZone';
+import NewFilePanel from './NewFilePanel';
 
 const FileLoaderView = styled.div`
-  height: 200px;
-  max-width: 800px;
+  max-width: 850px;
   display: flex;
   margin: auto;
+  justify-content: space-between;
 `;
 
 type FileLoaderProps = {
@@ -19,9 +20,7 @@ const FileLoader: FunctionComponent<FileLoaderProps> = ({
   return (
     <FileLoaderView>
       <DropZone loadFile={loadFile} />
-      <div>
-        <button onClick={() => loadFile({})}>Load file</button>
-      </div>
+      <NewFilePanel loadFile={loadFile} />
     </FileLoaderView>
   );
 };
