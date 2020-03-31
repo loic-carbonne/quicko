@@ -30,14 +30,14 @@ const DropZone: FunctionComponent<DropZoneProps> = ({
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
-      // Do whatever you want with the file contents
-        const binaryStr = reader.result
-        console.log(binaryStr)
+        const textContent = reader.result
+        loadFile(textContent);
       }
-      reader.readAsArrayBuffer(file)
+      reader.readAsText(file)
     })
 
-  }, [])
+  }, [loadFile])
+
   const {getRootProps, getInputProps} = useDropzone({onDrop})
 
   return (

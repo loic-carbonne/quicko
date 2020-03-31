@@ -1,11 +1,12 @@
 import { PlaybookModel } from '../models/Playbook';
+import { TaskModel } from '../models/Task';
 import { Action, ActionCreator } from 'redux';
 import { v4 as uuid } from 'uuid';
 
 export const UPDATE_PLAYBOOK = 'UPDATE_PLAYBOOK';
 export const DELETE_PLAYBOOK = 'DELETE_PLAYBOOK';
 export const ADD_PLAYBOOK = 'ADD_PLAYBOOK';
-export const INSERT_PLAYBOOKS = 'INSERT_PLAYBOOKS';
+export const LOAD_FILE = 'LOAD_FILE';
 
 export interface UpdatePlaybookAction extends Action {
   type: 'UPDATE_PLAYBOOK';
@@ -22,9 +23,10 @@ export interface AddPlaybookAction extends Action {
   playbook: PlaybookModel;
 }
 
-export interface InsertPlaybooksAction extends Action {
-  type: 'INSERT_PLAYBOOKS';
+export interface LoadFileAction extends Action {
+  type: 'LOAD_FILE';
   playbooks: PlaybookModel[];
+  tasks: TaskModel[];
 }
 
 export const updatePlaybook: ActionCreator<UpdatePlaybookAction> = (id, fields) => ({
@@ -53,9 +55,10 @@ export const deletePlaybook: ActionCreator<DeletePlaybookAction> = id => ({
   id
 });
 
-export const insertPlaybooks: ActionCreator<InsertPlaybooksAction> = playbooks => ({
-  type: INSERT_PLAYBOOKS,
-  playbooks
+export const loadFile: ActionCreator<LoadFileAction> = ({playbooks, tasks}) => ({
+  type: LOAD_FILE,
+  playbooks,
+  tasks,
 });
 
-export type PlaybooksAction = UpdatePlaybookAction | DeletePlaybookAction | AddPlaybookAction | InsertPlaybooksAction;
+export type PlaybooksAction = UpdatePlaybookAction | DeletePlaybookAction | AddPlaybookAction | LoadFileAction;

@@ -1,18 +1,8 @@
-import { ADD_PLAYBOOK, DELETE_PLAYBOOK, UPDATE_PLAYBOOK, INSERT_PLAYBOOKS, PlaybooksAction } from './../actions/playbooksActions';
+import { ADD_PLAYBOOK, DELETE_PLAYBOOK, UPDATE_PLAYBOOK, LOAD_FILE, PlaybooksAction } from './../actions/playbooksActions';
 import { ADD_TASK, DELETE_TASK, TasksAction } from '../actions/tasksActions';
 import { PlaybooksState } from '../models/Playbook';
 
-const INITIAL_PLAYBOOKS: PlaybooksState = {
-  '1': { id: '1', parameters: [], description: '', name: 'Create component', tasks: [] },
-  '2': { id: '2', parameters: [], description: '', name: 'Install material-ui', tasks: [] },
-  '3': { id: '3', parameters: [], description: '', name: 'Install redux', tasks: [] },
-  '4': { id: '4', parameters: [], description: '', name: 'Commit', tasks: [] },
-  '5': { id: '5', parameters: [], description: '', name: 'Pull request', tasks: [] },
-  '6': { id: '6', parameters: [], description: '', name: 'Insert text field', tasks: [] },
-  '7': { id: '7', parameters: [], description: '', name: 'Insert form', tasks: [] },
-  '8': { id: '8', parameters: [], description: '', name: 'Insert submit button', tasks: [] },
-  '9': { id: '9', parameters: [], description: '', name: 'Insert component', tasks: [] }
-};
+const INITIAL_PLAYBOOKS: PlaybooksState = {};
 
 const updateObjectFieldsById = (state: PlaybooksState, id: string, fields: any) => {
   const object = {
@@ -48,7 +38,7 @@ const playbooks = (state = INITIAL_PLAYBOOKS, action: PlaybooksAction | TasksAct
     }
     case DELETE_PLAYBOOK:
       return deleteObjectById(state, action.id);
-    case INSERT_PLAYBOOKS:
+    case LOAD_FILE:
       return action.playbooks;
     case DELETE_TASK:
       const { id, playbookId } = action;

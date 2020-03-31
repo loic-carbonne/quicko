@@ -1,5 +1,6 @@
-import { ADD_TASK, UPDATE_TASK, DELETE_TASK, INSERT_TASKS, TasksAction } from '../actions/tasksActions';
+import { ADD_TASK, UPDATE_TASK, DELETE_TASK, TasksAction } from '../actions/tasksActions';
 import { TaskModel } from '../models/Task';
+import { LOAD_FILE, PlaybooksAction } from '../actions/playbooksActions';
 
 export interface TasksState {
   [id: string]: TaskModel;
@@ -18,11 +19,9 @@ const deleteObjectById = (state: TasksState, id: string) => {
   return newState;
 };
 
-const INITIAL_TASKS: TasksState = {
-  '1': { id: '1', type: 'CREATE_FILE' }
-};
+const INITIAL_TASKS: TasksState = {};
 
-const tasks = (state = INITIAL_TASKS, action: TasksAction) => {
+const tasks = (state = INITIAL_TASKS, action: TasksAction | PlaybooksAction) => {
   switch (action.type) {
     case UPDATE_TASK: {
       const { id, fields } = action;
@@ -33,7 +32,7 @@ const tasks = (state = INITIAL_TASKS, action: TasksAction) => {
       return { ...state, [action.task.id]: action.task };
     case DELETE_TASK:
       return deleteObjectById(state, action.id);
-    case INSERT_TASKS:
+    case LOAD_FILE:
       return action.tasks;
     default:
       return state;

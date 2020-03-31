@@ -4,7 +4,6 @@ import { v4 as uuid } from 'uuid';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
-export const INSERT_TASKS = 'INSERT_TASKS';
 
 export interface UpdateTaskAction extends Action {
   type: 'UPDATE_TASK';
@@ -20,10 +19,6 @@ export interface DeleteTaskAction extends Action {
   type: 'DELETE_TASK';
   playbookId: string;
   id: string;
-}
-export interface InsertTasksAction extends Action {
-  type: 'INSERT_TASKS';
-  tasks: any[];
 }
 
 export const updateTask: ActionCreator<UpdateTaskAction> = (id, fields) => ({
@@ -48,9 +43,5 @@ export const deleteTask: ActionCreator<DeleteTaskAction> = (playbookId, id) => (
   playbookId,
   id
 });
-export const insertTasks: ActionCreator<InsertTasksAction> = (tasks) => ({
-  type: INSERT_TASKS,
-  tasks,
-});
 
-export type TasksAction = UpdateTaskAction | AddTaskAction | DeleteTaskAction | InsertTasksAction;
+export type TasksAction = UpdateTaskAction | AddTaskAction | DeleteTaskAction;
