@@ -38,6 +38,6 @@ jobs:
       uses: crazy-max/ghaction-github-pages@v1
       with:
         target_branch: gh-pages
-        build_dir: /packages/quicko-webapp/build
+        build_dir: packages/quicko-webapp/build
       env:
         GITHUB_PAT: ${{ secrets.TOKEN }}
