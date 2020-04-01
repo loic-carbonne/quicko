@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useState } from 'react';
-import { Paper, List, ListItem, ListItemText, ListItemIcon, Checkbox, Button } from '@material-ui/core';
+import React, { FunctionComponent } from 'react';
+import { Paper, Button } from '@material-ui/core';
 import styled from 'styled-components';
 import { bumpStyled } from '../../../shared/utils';
 import { RootState } from '../../../shared/reducers';
