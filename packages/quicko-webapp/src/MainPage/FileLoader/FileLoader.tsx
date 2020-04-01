@@ -36,6 +36,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       playbooks: JSON.parse(quickoData.playbooks),
       tasks: JSON.parse(quickoData.tasks),
     };
+    // @ts-ignore next-line
+    document.getElementById('page-wrapper').style.display = "none";
 
     return dispatch(loadFile(quickoData))
   },

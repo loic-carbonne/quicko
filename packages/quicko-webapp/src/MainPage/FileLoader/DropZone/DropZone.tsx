@@ -10,6 +10,7 @@ type DropZoneProps = {
 
 const DropZoneContainer = styled(Paper)`
   width: 400px;
+  margin: 16px;
 `;
 
 const DropZoneView = styled.div`
@@ -18,6 +19,13 @@ const DropZoneView = styled.div`
   height: calc(100% - 23px);
   text-align: center;
   margin: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+const CenterParagraph = styled.p`
+  text-align: center;
+  width: 100%;
 `;
 
 const DropZone: FunctionComponent<DropZoneProps> = ({
@@ -44,7 +52,7 @@ const DropZone: FunctionComponent<DropZoneProps> = ({
     <DropZoneContainer>
       <DropZoneView {...getRootProps()}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop your quicko file here,<br></br>or click to upload it</p>
+        <CenterParagraph>Drag 'n' drop your quicko file here,<br></br>or click to upload it</CenterParagraph>
       </DropZoneView>
     </DropZoneContainer>
   )

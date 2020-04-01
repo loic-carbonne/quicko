@@ -9,6 +9,7 @@ type NewFilePanelProps = {
 
 const NewFilePanelView = styled(Paper)`
   width: 400px;
+  margin: 16px;
 `;
 
 const CreateButtonView = styled(Button)`
