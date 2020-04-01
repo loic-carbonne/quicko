@@ -19,12 +19,18 @@ const ViewExpansionPanelDetails = bumpStyled(ExpansionPanelDetails)`
   flex-direction: column;
 `;
 
+const ViewDivider = bumpStyled(Divider)`
+  position: static
+`;
+
 type TaskEditorProps = {
   task: TaskModel;
   taskType: any;
   updateTaskFields: (fields: any) => void;
   deleteTask: (id: string) => void;
 };
+
+
 
 const TaskEditor: FunctionComponent<TaskEditorProps> = ({
   task,
@@ -39,7 +45,7 @@ const TaskEditor: FunctionComponent<TaskEditorProps> = ({
       <ExpansionPanelSummary>
         <Typography>{taskType.label}</Typography>
       </ExpansionPanelSummary>
-      <Divider />
+      <ViewDivider />
       <ViewExpansionPanelDetails>
         {taskType.fields.map((field: any) => (
           <TaskField
@@ -50,7 +56,7 @@ const TaskEditor: FunctionComponent<TaskEditorProps> = ({
           />
         ))}
       </ViewExpansionPanelDetails>
-      <Divider />
+      <ViewDivider />
       <ExpansionPanelActions>
         <Button size="small" onClick={() => deleteTask(id)}>
           Delete

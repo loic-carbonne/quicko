@@ -1,11 +1,17 @@
 import React, { FunctionComponent, useState, FormEvent } from 'react';
-import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
+import styled from 'styled-components';
 
 type ParametersEditorProps = {
   parameters: string[];
   onChange: (value: string[]) => void;
 };
+
+const ViewInput = styled.input`
+  && {
+    width: 200px;
+  }
+`
 
 const ParametersEditor: FunctionComponent<ParametersEditorProps> = ({ parameters = [], onChange }) => {
   const [variable, setVariable] = useState('');
@@ -38,11 +44,11 @@ const ParametersEditor: FunctionComponent<ParametersEditorProps> = ({ parameters
       {parameters.map(variable => (
         <Chip key={variable} label={variable} onDelete={() => handleDeleteVariable(variable)} />
       ))}
-      <TextField
+      <ViewInput
         autoComplete="off"
         value={variable}
-        label="Add variable"
-        rowsMax="4"
+        type="text"
+        placeholder="Add variable"
         id="description"
         onChange={e => setVariable(e.target.value)}
       />
