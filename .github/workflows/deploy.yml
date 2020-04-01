@@ -40,4 +40,4 @@ jobs:
         target_branch: gh-pages
         build_dir: /packages/quicko-webapp/build
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PAT: ${{ secrets.TOKEN }}
