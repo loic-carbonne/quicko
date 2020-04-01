@@ -1,8 +1,9 @@
-import React, { useState, FunctionComponent } from 'react';
+import React, { useState, FunctionComponent, Fragment } from 'react';
 import styled from 'styled-components';
 
 import PlaybookList from './PlaybookList';
 import PlaybookEditor from './PlaybookEditor';
+import PlaybookHeader from './PlaybookHeader';
 
 const EditionPageView = styled.div`
   height: 100%;
@@ -13,13 +14,16 @@ const Playbooks: FunctionComponent = () => {
   const [selectedPlaybookId, setSelectedPlaybookId] = useState();
 
   return (
-    <EditionPageView>
-      <PlaybookList
-        selectedPlaybookId={selectedPlaybookId}
-        setSelectedPlaybookId={setSelectedPlaybookId}
-      />
-      <PlaybookEditor selectedPlaybookId={selectedPlaybookId} />
-    </EditionPageView>
+    <Fragment>
+      <PlaybookHeader />
+      <EditionPageView>
+        <PlaybookList
+          selectedPlaybookId={selectedPlaybookId}
+          setSelectedPlaybookId={setSelectedPlaybookId}
+        />
+        <PlaybookEditor selectedPlaybookId={selectedPlaybookId} />
+      </EditionPageView>
+    </Fragment>
   );
 };
 
