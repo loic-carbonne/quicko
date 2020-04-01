@@ -31,3 +31,13 @@ jobs:
 
     - name: Run lerna build front
       run: npm run lerna run build-front
+
+    -
+      name: Deploy
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v1
+      with:
+        target_branch: gh-pages
+        build_dir: /packages/quicko-webapp/build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
