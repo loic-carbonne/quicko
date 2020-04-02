@@ -31,15 +31,10 @@ const FileLoader: FunctionComponent<FileLoaderProps> = ({
 const mapStateToProps = () => ({});
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   loadFile: (data: any) => {
-    let quickoData = JSON.parse(data);
-    quickoData = {
-      playbooks: JSON.parse(quickoData.playbooks),
-      tasks: JSON.parse(quickoData.tasks),
-    };
     // @ts-ignore next-line
     document.getElementById('page-wrapper').style.display = "none";
 
-    return dispatch(loadFile(quickoData))
+    return dispatch(loadFile(data))
   },
 });
 

@@ -3,6 +3,7 @@ import React, { FunctionComponent, useCallback } from 'react';
 import {useDropzone} from 'react-dropzone'
 import styled from 'styled-components';
 import { Paper } from '@material-ui/core';
+import { convertFileTextToStore } from '../../../shared/utils';
 
 type DropZoneProps = {
   loadFile: (content: any) => void;
@@ -38,8 +39,10 @@ const DropZone: FunctionComponent<DropZoneProps> = ({
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
-        const textContent = reader.result
-        loadFile(textContent);
+        // @ts-ignore next-line
+        const textContent: string = reader.result;
+        let quickoData = convertFileTextToStore(textContent);
+        loadFile(quickoData);
       }
       reader.readAsText(file)
     })

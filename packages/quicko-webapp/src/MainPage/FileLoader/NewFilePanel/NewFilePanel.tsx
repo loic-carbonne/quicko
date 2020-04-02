@@ -3,6 +3,16 @@ import { Paper, List, ListItem, ListItemText, ListItemIcon, Checkbox, Button } f
 import styled from 'styled-components';
 
 
+const playbooks = {
+  "477749ad-99f2-4aaf-bdd6-e39da2e568ae": {
+    id: "477749ad-99f2-4aaf-bdd6-e39da2e568ae",
+    name: "New playbook",
+    description: "",
+    parameters: [],
+    tasks: [],
+  }
+}
+
 type NewFilePanelProps = {
   loadFile: (content: any) => void;
 };
@@ -51,7 +61,7 @@ const NewFilePanel: FunctionComponent<NewFilePanelProps> = ({
         })}
         <ListItem />
       </List>
-      <CreateButtonView variant="contained" color="primary" onClick={() => loadFile({})}>Create new quicko file</CreateButtonView>
+      <CreateButtonView variant="contained" color="primary" onClick={() => loadFile({tasks: {}, playbooks})}>Create new quicko file</CreateButtonView>
     </NewFilePanelView>
   )
 }

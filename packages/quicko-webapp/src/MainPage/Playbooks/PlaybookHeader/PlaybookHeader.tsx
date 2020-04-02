@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Paper, Button } from '@material-ui/core';
 import styled from 'styled-components';
-import { bumpStyled } from '../../../shared/utils';
+import { bumpStyled, convertStoreToFileText } from '../../../shared/utils';
 import { RootState } from '../../../shared/reducers';
 import { connect } from 'react-redux';
 
@@ -17,16 +17,6 @@ const PlaybookHeaderView = styled(Paper)`
 const CreateButtonView = bumpStyled(Button)`
   margin: 8px;
 `;
-
-const convertStoreToFileText = (store: RootState) => {
-    const text = Object.keys(store).reduce(
-      (acc: any, key: string) =>
-      // @ts-ignore next-line
-        ({...acc, [key]: JSON.stringify(store[key])}),
-      {}
-    );
-    return JSON.stringify(text)
-}
 
 const download = (filename: string, text: string) => {
   var element = document.createElement('a');
