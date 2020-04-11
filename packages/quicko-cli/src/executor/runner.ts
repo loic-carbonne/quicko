@@ -1,85 +1,8 @@
 import { TaskModel, TaskTypesKeys, FolderPathFieldTypes } from 'quicko-core/models/Task';
 import { HydratedPlaybookModel } from 'quicko-core/models/Playbook';
 import { askFolderLocation } from './dialog';
+import { createFile, executeCommand } from './runners';
 import store from './store';
-
-const nodePlop = require('node-plop');
-
-const createFileGenerator = (basePath: string, filename: string, template: string) => plop => {
-  plop.setGenerator('generator', {
-    description: 'add file generator',
-    actions: [
-      {
-        type: 'add',
-        path: `./${basePath}/${filename}`,
-        template
-      }
-    ]
-  });
-
-  return plop;
-};
-
-const createFile = (
-  basePath: string,
-  templateParams: string,
-  filenameTemplate: string,
-  fileContentTemplate: string
-) => {
-  const createComponentGenerator = createFileGenerator(
-    basePath,
-    filenameTemplate,
-    fileContentTemplate
-  );
-  const plopfile = createComponentGenerator(nodePlop());
-  const generator = plopfile.getGenerator('generator');
-
-  return generator.runActions(templateParams);
-};
-
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
-const Handlebars = require('handlebars');
-
-async function executeCommand(templateParams: string, commandTemplate: string) {
-  const template = Handlebars.compile(commandTemplate);
-
-  const command = template(templateParams);
-
-  const { stdout, stderr } = await exec(command);
-  console.log(stdout);
-  console.error(stderr);
-}
-
-// --------------------------------------------------------- //
-/*
-var jscodeshift = require('jscodeshift');
-
-const executeCodemod = (code: string, transformString: string) => {
-  const transform = eval(transformString);
-  const toto = transform({ source: code }, { jscodeshift });
-  console.log(toto);
-};
-
-const codemod = `
-(file, api) => {
-  const j = api.jscodeshift;
-
-  return j(file.source)
-    .find(j.Identifier)
-    .forEach(path => {
-      j(path).replaceWith(
-        j.identifier('bar')
-      );
-    })
-    .toSource();
-  };
-`;
-
-
-const code = `const foo = 'bar'; const toto = 'bar';`;
-executeCodemod(code, codemod);
-*/
 
 const extractFileLocation = async (task: TaskModel, context: any) => {
   const { parentFolderPath } = task;

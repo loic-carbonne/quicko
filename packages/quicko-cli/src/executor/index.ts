@@ -3,7 +3,7 @@ import { askPlaybookConfiguration } from './dialog';
 
 const context = {};
 
-const execute = async () => {
+export const execute = async () => {
   const playbookConfiguration = await askPlaybookConfiguration();
   const { playbook, playbookParameters } = playbookConfiguration;
 
@@ -12,8 +12,4 @@ const execute = async () => {
   }
 
   console.log('Execution success');
-};
-
-export default {
-  execute
 };
