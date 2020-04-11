@@ -108,7 +108,8 @@
     "node-plop": "^0.19.0",
     "node-storage": "0.0.8",
     "prismjs": "^1.17.1",
-    "quicko-core": "^0.1.0"
+    "quicko-core": "^0.1.0",
+    "ts-morph": "^7.0.2"
   },
   "gitHead": "05fb056e2b1887d738bcc9f316b63183348607e1"
 }
