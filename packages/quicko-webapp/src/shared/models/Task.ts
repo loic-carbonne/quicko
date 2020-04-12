@@ -3,10 +3,16 @@ export enum TaskTypesKeys {
     ExecuteCommand = "EXECUTE_COMMAND",
     ExecutePlaybook = "EXECUTE_PLAYBOOK",
     ExecuteCodemod = "EXECUTE_CODEMOD",
+    TypescriptAddMembersToClass = "TYPESCRIPT_ADD_MEMBERS_TO_CLASS",
 }
 
 export enum FolderPathFieldTypes {
     Root = "ROOT",
+    UserInput = "USER_INPUT",
+    Value = "VALUE",
+}
+
+export enum FilePathFieldTypes {
     UserInput = "USER_INPUT",
     Value = "VALUE",
 }
@@ -18,6 +24,7 @@ export interface TaskModel {
 export const FIELD_TYPES = {
   TEXT: 'TEXT',
   FOLDER_PATH: 'FOLDER_PATH',
+  FILE_PATH: 'FILE_PATH',
   CODE: 'CODE',
   PLAYBOOK: 'PLAYBOOK'
 };
@@ -62,6 +69,14 @@ export const TASK_TYPES: TaskTypesModel = {
     key: TaskTypesKeys.ExecutePlaybook,
     label: 'Playbook execution',
     fields: [{ name: 'playbookId', label: 'Playbook', type: FIELD_TYPES.PLAYBOOK }]
+  },
+  [TaskTypesKeys.TypescriptAddMembersToClass]: {
+    key: TaskTypesKeys.TypescriptAddMembersToClass,
+    label: 'Typescript add members to class',
+    fields: [
+      { name: 'filePath', label: 'File to edit', type: FIELD_TYPES.FILE_PATH },
+      { name: 'membersToAdd', label: 'Members code to add', type: FIELD_TYPES.CODE }
+    ]
   }
 };
 

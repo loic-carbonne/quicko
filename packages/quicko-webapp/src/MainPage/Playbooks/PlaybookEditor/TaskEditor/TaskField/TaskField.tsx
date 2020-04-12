@@ -7,6 +7,7 @@ import CodeField from './CodeField';
 import TextField from './TextField';
 import PlaybookField from './PlaybookField';
 import FolderPathField from './FolderPathField';
+import FilePathField from './FilePathField';
 
 type TaskFieldProps = {
   task: TaskModel;
@@ -31,6 +32,9 @@ const TaskField = ({ task, field, updateTaskFields }: TaskFieldProps) => {
       break;
     case FIELD_TYPES.FOLDER_PATH:
       FieldComponent = FolderPathField;
+      break;
+    case FIELD_TYPES.FILE_PATH:
+      FieldComponent = FilePathField;
       break;
     default:
       FieldComponent = Fragment;
