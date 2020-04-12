@@ -13,7 +13,7 @@ const getPlaybookNames = () => {
   return Object.values(store).map(playbook => playbook.name);
 };
 
-const searchPlaybookByName = async (answers, input) => {
+const searchPlaybookByName = async (_answers, input) => {
   const filter = input || '';
   const fuzzyResult = fuzzy.filter(filter, getPlaybookNames());
   return fuzzyResult.map(el => el.original);
@@ -69,7 +69,7 @@ export const askFolderLocation = async () => {
       {
         type: 'fuzzypath',
         name: 'path',
-        itemType: 'any',
+        itemType: 'directory',
         // itemType :: 'any' | 'directory' | 'file'
         // specify the type of nodes to display
         // default value: 'any'
@@ -82,7 +82,35 @@ export const askFolderLocation = async () => {
         suggestOnly: false
         // suggestOnly :: Bool
         // Restrict prompt answer to available choices or use them as suggestions
-        //depthLimit: 5,
+        // depthLimit: 5,
+        // depthLimit :: integer >= 0
+        // Limit the depth of sub-folders to scan
+        // Defaults to infinite depth if undefined
+      }
+    ])
+    .then(res => res);
+};
+
+export const askFileLocation = async () => {
+  return await inquirer
+    .prompt([
+      {
+        type: 'fuzzypath',
+        name: 'path',
+        itemType: 'file',
+        // itemType :: 'any' | 'directory' | 'file'
+        // specify the type of nodes to display
+        // default value: 'any'
+        // example: itemType: 'file' - hides directories from the item list
+        rootPath: 'src',
+        // rootPath :: String
+        // Root search directory
+        message: 'Select a target directory for your component:',
+        default: 'components/',
+        suggestOnly: false
+        // suggestOnly :: Bool
+        // Restrict prompt answer to available choices or use them as suggestions
+        // depthLimit: 5,
         // depthLimit :: integer >= 0
         // Limit the depth of sub-folders to scan
         // Defaults to infinite depth if undefined

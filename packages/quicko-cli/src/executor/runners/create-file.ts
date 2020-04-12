@@ -1,35 +1,20 @@
-const nodePlop = require('node-plop');
+import { parseTemplate } from '../../utils/templating';
 
-const createFileGenerator = (basePath: string, filename: string, template: string) => plop => {
-  plop.setGenerator('generator', {
-    description: 'add file generator',
-    actions: [
-      {
-        type: 'add',
-        path: `./${basePath}/${filename}`,
-        template
-      }
-    ]
-  });
+const fs = require('fs');
 
-  return plop;
-};
-
+// TODO: refactor runners, should all have the same signature (params, task)
 export const createFile = (
   basePath: string,
   templateParams: string,
   filenameTemplate: string,
   fileContentTemplate: string
 ) => {
-  const createComponentGenerator = createFileGenerator(
-    basePath,
-    filenameTemplate,
-    fileContentTemplate
-  );
-  const plopfile = createComponentGenerator(nodePlop());
-  const generator = plopfile.getGenerator('generator');
+  const path = parseTemplate(`./${basePath}/${filenameTemplate}`, templateParams);
+  const fileContent = parseTemplate(fileContentTemplate, templateParams);
 
-  return generator.runActions(templateParams);
+  fs.writeFileSync(path, fileContent, { encoding: 'utf8', flag: 'w' });
+
+  return;
 };
 
 export default createFile;

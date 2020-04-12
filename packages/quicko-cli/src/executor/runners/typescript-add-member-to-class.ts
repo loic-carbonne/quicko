@@ -1,24 +1,22 @@
 import { Project, IndentationText } from 'ts-morph';
+const fs = require('fs');
+import { parseTemplate } from '../../utils/templating';
 
-const project = new Project({
-  manipulationSettings: {
-    indentationText: IndentationText.TwoSpaces
-  }
-});
-const sourceFile = project.addSourceFileAtPath('./pool.service.ts');
+export const typescriptAddMemberToClass = (fileLocation, membersToAdd, params) => {
+  const filePath = parseTemplate(fileLocation, params);
+  const codeToAddText = parseTemplate(membersToAdd, params);
 
-const runAddMembersInClass = codeToAddText => {
+  const project = new Project({
+    manipulationSettings: {
+      indentationText: IndentationText.TwoSpaces
+    }
+  });
+
+  const sourceFile = project.addSourceFileAtPath(filePath);
   sourceFile.getClasses()[0].addMembers(codeToAddText);
-  console.log(sourceFile.getFullText());
-  return;
+  const newFileText = sourceFile.getFullText();
+
+  fs.writeFileSync(filePath, newFileText, { encoding: 'utf8', flag: 'w' });
 };
 
-const codeToAddText = `
-isCreatePoolRunning2() {
-  return this.poolSelector.getCreatePoolLoading();
-}
-
-lollol = '12';
-`;
-
-runAddMembersInClass(codeToAddText);
+export default typescriptAddMemberToClass;

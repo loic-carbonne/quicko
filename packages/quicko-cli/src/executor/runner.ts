@@ -1,10 +1,16 @@
-import { TaskModel, TaskTypesKeys, FolderPathFieldTypes } from 'quicko-core/models/Task';
+import {
+  TaskModel,
+  TaskTypesKeys,
+  FolderPathFieldTypes,
+  FilePathFieldTypes
+} from 'quicko-core/models/Task';
 import { HydratedPlaybookModel } from 'quicko-core/models/Playbook';
-import { askFolderLocation } from './dialog';
-import { createFile, executeCommand } from './runners';
+import { askFolderLocation, askFileLocation } from './dialog';
+import { createFile, executeCommand, typescriptAddMemberToClass } from './runners';
 import store from './store';
 
-const extractFileLocation = async (task: TaskModel, context: any) => {
+// TODO: make input extraction generic, should not be based on parentFolderPath variable
+const extractFolderLocation = async (task: TaskModel, context: any) => {
   const { parentFolderPath } = task;
   if (!parentFolderPath) return './';
   const { type, value } = parentFolderPath;
@@ -23,17 +29,40 @@ const extractFileLocation = async (task: TaskModel, context: any) => {
   }
 };
 
+const extractFileLocation = async (task: TaskModel, context: any) => {
+  const { filePath } = task;
+  if (!filePath) return './';
+  const { type, value } = filePath;
+  switch (type) {
+    case FilePathFieldTypes.UserInput:
+      const { lastFolderLocationPath } = context;
+      if (lastFolderLocationPath) return lastFolderLocationPath;
+      const { path } = await askFileLocation();
+      return path;
+    case FilePathFieldTypes.Value:
+      return value;
+    default:
+      return './';
+  }
+};
+
 const executeTask = async (task: TaskModel, params: any, context: any) => {
   switch (task.type) {
     case TaskTypesKeys.CreateFile:
       const { fileName, fileContent } = task;
-      const location = await extractFileLocation(task, context);
+      const location = await extractFolderLocation(task, context);
       createFile(location, params, fileName, fileContent);
       break;
 
     case TaskTypesKeys.ExecuteCommand:
       const { command } = task;
       executeCommand(params, command);
+      break;
+
+    case TaskTypesKeys.TypescriptAddMembersToClass:
+      const { membersToAdd } = task;
+      const fileLocation = await extractFileLocation(task, context);
+      typescriptAddMemberToClass(fileLocation, membersToAdd, params);
       break;
 
     case TaskTypesKeys.ExecutePlaybook:
