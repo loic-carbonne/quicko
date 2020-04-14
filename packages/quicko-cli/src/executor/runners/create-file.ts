@@ -1,6 +1,7 @@
 import { parseTemplate } from '../../utils/templating';
 
 const fs = require('fs');
+const path = require('path');
 
 // TODO: refactor runners, should all have the same signature (params, task)
 export const createFile = (
@@ -9,10 +10,11 @@ export const createFile = (
   filenameTemplate: string,
   fileContentTemplate: string
 ) => {
-  const path = parseTemplate(`./${basePath}/${filenameTemplate}`, templateParams);
+  const filePath = parseTemplate(`./${basePath}/${filenameTemplate}`, templateParams);
   const fileContent = parseTemplate(fileContentTemplate, templateParams);
 
-  fs.writeFileSync(path, fileContent, { encoding: 'utf8', flag: 'w' });
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, fileContent, { encoding: 'utf8', flag: 'w' });
 
   return;
 };

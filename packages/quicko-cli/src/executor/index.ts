@@ -13,3 +13,7 @@ export const execute = async () => {
 
   console.log('Execution success');
 };
+
+export default {
+  execute
+};

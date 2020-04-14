@@ -68,6 +68,7 @@ const executeTask = async (task: TaskModel, params: any, context: any) => {
     case TaskTypesKeys.ExecutePlaybook:
       const playbookId = task.playbookId;
       const playbook = store[playbookId];
+      console.log(`Running playbook ${playbook.name}...`);
       run(playbook, params, context);
       break;
     default:
