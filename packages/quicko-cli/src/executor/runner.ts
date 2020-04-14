@@ -6,7 +6,7 @@ import {
 } from 'quicko-core/models/Task';
 import { HydratedPlaybookModel } from 'quicko-core/models/Playbook';
 import { askFolderLocation, askFileLocation } from './dialog';
-import { createFile, executeCommand, typescriptAddMemberToClass } from './runners';
+import { createFile, executeCommand, typescriptTransformationOnFile } from './runners';
 import store from './store';
 
 // TODO: make input extraction generic, should not be based on parentFolderPath variable
@@ -59,10 +59,10 @@ const executeTask = async (task: TaskModel, params: any, context: any) => {
       executeCommand(params, command);
       break;
 
-    case TaskTypesKeys.TypescriptAddMembersToClass:
-      const { membersToAdd } = task;
+    case TaskTypesKeys.TypescriptTransformationOnFile:
+      const { transformationCode } = task;
       const fileLocation = await extractFileLocation(task, context);
-      typescriptAddMemberToClass(fileLocation, membersToAdd, params);
+      typescriptTransformationOnFile(fileLocation, transformationCode, params);
       break;
 
     case TaskTypesKeys.ExecutePlaybook:

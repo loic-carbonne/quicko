@@ -2,9 +2,9 @@ import { Project, IndentationText } from 'ts-morph';
 const fs = require('fs');
 import { parseTemplate } from '../../utils/templating';
 
-export const typescriptAddMemberToClass = (fileLocation, membersToAdd, params) => {
+export const typescriptTransformationOnFile = (fileLocation, transformationCode, params) => {
   const filePath = parseTemplate(fileLocation, params);
-  const codeToAddText = parseTemplate(membersToAdd, params);
+  const transformationCodeText = parseTemplate(transformationCode, params);
 
   const project = new Project({
     manipulationSettings: {
@@ -13,10 +13,10 @@ export const typescriptAddMemberToClass = (fileLocation, membersToAdd, params) =
   });
 
   const sourceFile = project.addSourceFileAtPath(filePath);
-  sourceFile.getClasses()[0].addMembers(codeToAddText);
-  const newFileText = sourceFile.getFullText();
+  // tslint:disable-next-line: no-eval
+  const newFileContent = eval(transformationCodeText)(sourceFile);
 
-  fs.writeFileSync(filePath, newFileText, { encoding: 'utf8', flag: 'w' });
+  fs.writeFileSync(filePath, newFileContent, { encoding: 'utf8', flag: 'w' });
 };
 
-export default typescriptAddMemberToClass;
+export default typescriptTransformationOnFile;

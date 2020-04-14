@@ -3,7 +3,7 @@ export enum TaskTypesKeys {
     ExecuteCommand = "EXECUTE_COMMAND",
     ExecutePlaybook = "EXECUTE_PLAYBOOK",
     ExecuteCodemod = "EXECUTE_CODEMOD",
-    TypescriptAddMembersToClass = "TYPESCRIPT_ADD_MEMBERS_TO_CLASS",
+    TypescriptTransformationOnFile = "TYPESCRIPT_TRANSFORMATION_ON_FILE",
 }
 
 export enum FolderPathFieldTypes {
@@ -70,12 +70,12 @@ export const TASK_TYPES: TaskTypesModel = {
     label: 'Playbook execution',
     fields: [{ name: 'playbookId', label: 'Playbook', type: FIELD_TYPES.PLAYBOOK }]
   },
-  [TaskTypesKeys.TypescriptAddMembersToClass]: {
-    key: TaskTypesKeys.TypescriptAddMembersToClass,
-    label: 'Typescript add members to class',
+  [TaskTypesKeys.TypescriptTransformationOnFile]: {
+    key: TaskTypesKeys.TypescriptTransformationOnFile,
+    label: 'Typescript ts-morph transformation on file',
     fields: [
       { name: 'filePath', label: 'File to edit', type: FIELD_TYPES.FILE_PATH },
-      { name: 'membersToAdd', label: 'Members code to add', type: FIELD_TYPES.CODE }
+      { name: 'transformationCode', label: 'Ts-morph transformation code', type: FIELD_TYPES.CODE }
     ]
   }
 };
