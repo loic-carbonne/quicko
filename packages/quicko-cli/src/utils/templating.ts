@@ -35,6 +35,6 @@ Object.keys(HELPERS).forEach(helperName =>
   Handlebars.registerHelper(helperName, HELPERS[helperName])
 );
 
-export const parseTemplate = (template: String, params: any) => {
+export const parseTemplate = (template: String = '', params: any) => {
   return Handlebars.compile(template)(params);
 };
