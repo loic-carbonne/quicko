@@ -12,11 +12,11 @@ export const convertStoreToFileText = (store: RootState) => {
     const text = Object.keys(store).reduce(
       (acc: any, key: string) =>
       // @ts-ignore next-line
-        ({...acc, [key]: JSON.stringify(store[key])}),
+        ({...acc, [key]: JSON.stringify(store[key], null, 2)}),
       {}
     );
 
-    return JSON.stringify(text)
+    return JSON.stringify(text, null, 2)
 }
 
 export const convertFileTextToStore = (text: string) => {
