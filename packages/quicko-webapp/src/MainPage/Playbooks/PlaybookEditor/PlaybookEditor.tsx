@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -60,10 +60,9 @@ const PlaybookEditor: FunctionComponent<PlaybookEditorProps> = ({
   deleteTask,
   deletePlaybook,
 }) => {
-  const panelRef = useRef(null)
   useEffect(() => {
-    // @ts-ignore next-line
-    if (panelRef.current) panelRef.current.scrollTo({top: 0});
+    const panel = document.getElementById('playbook-editor-panel');
+     if (panel) panel.scrollTop = 0;
   }, [playbook]);
 
   const handleChange = (name: string) => (event: any) => {
@@ -81,7 +80,7 @@ const PlaybookEditor: FunctionComponent<PlaybookEditorProps> = ({
   const { name = '', description = '', parameters = [], tasks = [] } = playbook;
 
   return (
-    <ViewPlaybookEditor ref={panelRef}>
+    <ViewPlaybookEditor id={"playbook-editor-panel"}>
       <ViewForm>
         <ViewTextField
           autoComplete="off"

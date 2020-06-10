@@ -10,7 +10,7 @@ import { PlaybookModel } from '../../../shared/models/Playbook';
 import { RootState } from '../../../shared/reducers/index';
 import { addPlaybook } from '../../../shared/actions/playbooksActions';
 import styled from 'styled-components';
-import { Divider, ListItemIcon, FormControl, InputLabel, Input, InputAdornment } from '@material-ui/core';
+import { Divider, ListItemIcon, FormControl, Input, InputAdornment } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import DownloadButton from './DownloadButton';
@@ -73,7 +73,6 @@ const PlaybookList: FunctionComponent<PlaybookListProps> = ({
 
 
   const filterPlaybooks = (event: any) => {
-    console.log(event);
     setFilteredPlaybooks(playbooks.filter(playbook => playbook.name.toLowerCase().includes(event.target.value) ))
   }
 
