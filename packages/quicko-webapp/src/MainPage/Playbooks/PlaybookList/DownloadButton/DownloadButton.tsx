@@ -1,22 +1,13 @@
 import React, { FunctionComponent } from 'react';
-import { Paper, Button } from '@material-ui/core';
-import styled from 'styled-components';
-import { bumpStyled, convertStoreToFileText } from '../../../shared/utils';
-import { RootState } from '../../../shared/reducers';
+import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { convertStoreToFileText } from '../../../../shared/utils';
+import { RootState } from '../../../../shared/reducers';
 import { connect } from 'react-redux';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 type PlaybookHeaderProps = {
   store: RootState;
 };
-
-const PlaybookHeaderView = styled(Paper)`
-  width: 100%;
-  text-align: right;
-`;
-
-const CreateButtonView = bumpStyled(Button)`
-  margin: 8px;
-`;
 
 const download = (filename: string, text: string) => {
   var element = document.createElement('a');
@@ -40,9 +31,15 @@ const PlaybookHeader: FunctionComponent<PlaybookHeaderProps> = ({
   };
 
   return (
-    <PlaybookHeaderView>
-      <CreateButtonView variant="contained" color="primary" onClick={() => downloadFile()}>Download quicko file</CreateButtonView>
-    </PlaybookHeaderView>
+    <ListItem
+      button
+      onClick={downloadFile}
+    >
+      <ListItemIcon>
+        <GetAppIcon />
+      </ListItemIcon>
+      <ListItemText primary="Download quicko.json" />
+    </ListItem>
   )
 }
 

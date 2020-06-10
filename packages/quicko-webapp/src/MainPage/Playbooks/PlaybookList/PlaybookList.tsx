@@ -9,11 +9,46 @@ import { bumpStyled } from '../../../shared/utils';
 import { PlaybookModel } from '../../../shared/models/Playbook';
 import { RootState } from '../../../shared/reducers/index';
 import { addPlaybook } from '../../../shared/actions/playbooksActions';
+import styled from 'styled-components';
+import { Divider, ListItemIcon } from '@material-ui/core';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import DownloadButton from './DownloadButton';
 
 const ViewList = bumpStyled(List)`
   height: 100%;
   overflow: auto;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const ViewDivider = bumpStyled(Divider)`
+  position: initial;
+`;
+
+const ViewDrawer = styled.div`
+  height: 100%;
+  width: 260px;
+  min-width: 260px;
+  overflow: auto;
+  padding: 0;
+  background-color: white;
+`;
+
+const ViewTitle = styled.h1`
+  padding: 20px;
+  margin-bottom:10px;
+`;
+
+const ViewTop = styled.div`
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ViewScroll = styled.div`
+  overflow: auto;
 `;
 
 type PlaybookListProps = {
@@ -30,24 +65,39 @@ const PlaybookList: FunctionComponent<PlaybookListProps> = ({
   addPlaybook,
 }) => {
   return (
-    <ViewList component="nav">
-      {playbooks.map(playbook => (
-        <ListItem
-          key={playbook.id}
-          button
-          selected={playbook.id === selectedPlaybookId}
-          onClick={() => setSelectedPlaybookId(playbook.id)}
-        >
-          { playbook.name ? <ListItemText primary={playbook.name} /> : <ListItemText secondary="UNNAMED" />}
-        </ListItem>
-      ))}
-        <ListItem
-          button
-          onClick={addPlaybook}
-        >
-          <ListItemText primary="Add playbook" />
-        </ListItem>
-    </ViewList>
+    <ViewDrawer>
+      <ViewList component="nav">
+        <ViewTop>
+          <ViewTitle>Quicko</ViewTitle>
+          <ViewDivider />
+          <ViewScroll>
+            {playbooks.map(playbook => (
+              <ListItem
+                key={playbook.id}
+                button
+                selected={playbook.id === selectedPlaybookId}
+                onClick={() => setSelectedPlaybookId(playbook.id)}
+              >
+                { playbook.name ? <ListItemText primary={playbook.name} /> : <ListItemText secondary="UNNAMED" />}
+              </ListItem>
+            ))}
+          </ViewScroll>
+        </ViewTop>
+        <div>
+          <ViewDivider />
+          <ListItem
+            button
+            onClick={addPlaybook}
+          >
+            <ListItemIcon>
+              <AddCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add playbook" />
+          </ListItem>
+          <DownloadButton />
+        </div>
+      </ViewList>
+    </ViewDrawer>
   );
 };
 

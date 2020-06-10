@@ -21,6 +21,7 @@ const ViewPlaybookEditor = styled.div`
   display: flex;
   height: 100%;
   flex: auto;
+  overflow: auto;
 `;
 
 const ViewTypography = bumpStyled(Typography)`

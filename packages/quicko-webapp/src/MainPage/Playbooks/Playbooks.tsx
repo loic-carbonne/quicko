@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import PlaybookList from './PlaybookList';
 import PlaybookEditor from './PlaybookEditor';
-import PlaybookHeader from './PlaybookHeader';
 
 const EditionPageView = styled.div`
   height: 100%;
@@ -15,7 +14,6 @@ const Playbooks: FunctionComponent = () => {
 
   return (
     <Fragment>
-      <PlaybookHeader />
       <EditionPageView>
         <PlaybookList
           selectedPlaybookId={selectedPlaybookId}

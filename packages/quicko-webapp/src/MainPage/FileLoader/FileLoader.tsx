@@ -33,6 +33,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   loadFile: (data: any) => {
     // @ts-ignore next-line
     document.getElementById('page-wrapper').style.display = "none";
+    // @ts-ignore next-line
+    document.getElementById('editor').style.display = "block";
 
     return dispatch(loadFile(data))
   },
