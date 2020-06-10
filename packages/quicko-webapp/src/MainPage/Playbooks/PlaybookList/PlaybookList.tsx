@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import List from '@material-ui/core/List';
@@ -10,8 +10,9 @@ import { PlaybookModel } from '../../../shared/models/Playbook';
 import { RootState } from '../../../shared/reducers/index';
 import { addPlaybook } from '../../../shared/actions/playbooksActions';
 import styled from 'styled-components';
-import { Divider, ListItemIcon } from '@material-ui/core';
+import { Divider, ListItemIcon, FormControl, InputLabel, Input, InputAdornment } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import SearchIcon from '@material-ui/icons/Search';
 import DownloadButton from './DownloadButton';
 
 const ViewList = bumpStyled(List)`
@@ -51,6 +52,10 @@ const ViewScroll = styled.div`
   overflow: auto;
 `;
 
+const ViewSearchFormControl = bumpStyled(FormControl)`
+  margin: 16px;
+`;
+
 type PlaybookListProps = {
   playbooks: PlaybookModel[];
   selectedPlaybookId: string;
@@ -64,14 +69,35 @@ const PlaybookList: FunctionComponent<PlaybookListProps> = ({
   setSelectedPlaybookId,
   addPlaybook,
 }) => {
+  const [filteredPlaybooks, setFilteredPlaybooks] = useState(playbooks);
+
+
+  const filterPlaybooks = (event: any) => {
+    console.log(event);
+    setFilteredPlaybooks(playbooks.filter(playbook => playbook.name.toLowerCase().includes(event.target.value) ))
+  }
+
   return (
     <ViewDrawer>
       <ViewList component="nav">
         <ViewTop>
           <ViewTitle>Quicko</ViewTitle>
           <ViewDivider />
+          <ViewSearchFormControl>
+            <Input
+              onChange={filterPlaybooks}
+              autoComplete="off"
+              placeholder="Filter"
+              id="filter"
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              }
+            />
+          </ViewSearchFormControl>
           <ViewScroll>
-            {playbooks.map(playbook => (
+            {filteredPlaybooks.map(playbook => (
               <ListItem
                 key={playbook.id}
                 button
